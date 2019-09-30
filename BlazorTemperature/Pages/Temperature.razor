@@ -1,5 +1,15 @@
 ﻿@page "/temperature"
 
+@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.ChartJS.Common
+@using ChartJs.Blazor.ChartJS.Common.Properties
+@using ChartJs.Blazor.ChartJS.Common.Enums
+@using ChartJs.Blazor.ChartJS.Common.Legends
+@using ChartJs.Blazor.ChartJS.LineChart
+@using ChartJs.Blazor.ChartJS.LineChart.Axes
+@using ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks
+@using static ChartJs.Blazor.Util.ColorUtil
+
 @using BlazorTemperature.Data
 @using TemperatureApi.Models
 
@@ -16,7 +26,22 @@ else
     <p>Temperatures loaded.</p>
     <p>Samples Collected: @temperatures.Length </p>
     <p>Average Temperature = @string.Format("{0:0.##}", temperatures.Average(p => p.TemperatureF) ) </p>
+
+    <hr />
+
+
+
+    <h2>Line Linear Chart</h2>
+    <ChartJsLineChart @ref="lineChartJs" Config="@lineConfig" Width="600" Height="300" />
+    <Button @onclick="UpdateChart">Add random point</Button>
+
+
+
+
+
 }
+
+
 
 
 @code {
@@ -26,6 +51,88 @@ else
     protected override async Task OnInitializedAsync()
     {
         temperatures = await TemperatureService.GetTemperaturesAsync();;
+    }
+
+    LineConfig lineConfig;
+    ChartJsLineChart lineChartJs;
+
+    private LineDataset<Point> pointDataset;
+
+    private Random rnd = new Random();
+
+    protected override void OnInitialized()
+    {
+        lineConfig = new LineConfig
+        {
+            Options = new LineOptions
+            {
+                Responsive = true,
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "Simple Line Chart"
+                },
+                Legend = new Legend
+                {
+                    Position = Positions.Right,
+                    Labels = new LegendLabelConfiguration
+                    {
+                        UsePointStyle = true
+                    }
+                },
+                Tooltips = new Tooltips
+                {
+                    Mode = InteractionMode.Nearest,
+                    Intersect = false
+                },
+                Scales = new Scales
+                {
+                    xAxes = new List<CartesianAxis>
+                    {
+                        new LinearCartesianAxis
+                        {
+                            ScaleLabel = new ScaleLabel
+                            {
+                                LabelString = "X-value"
+                            }
+                        }
+                    },
+                    yAxes = new List<CartesianAxis>()
+                    {
+                        new LinearCartesianAxis
+                        {
+                            ScaleLabel = new ScaleLabel
+                            {
+                                LabelString = "Random value"
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+
+        pointDataset = new LineDataset<Point>()
+        {
+            BackgroundColor = ChartJs.Blazor.Util.ColorUtil.ColorString(0, 255, 0, 1.0),
+            BorderColor = ChartJs.Blazor.Util.ColorUtil.ColorString(0, 0, 255, 1.0),
+            Label = "Some values",
+            Fill = false,
+            PointBackgroundColor = ChartJs.Blazor.Util.ColorUtil.RandomColorString(),
+            BorderWidth = 1,
+            PointRadius = 3,
+            PointBorderWidth = 1
+        };
+
+        pointDataset.AddRange(Enumerable.Range(1, 10).Select(i => new Point(i, rnd.Next(30))));
+
+        lineConfig.Data.Datasets.Add(pointDataset);
+    }
+
+    private void UpdateChart()
+    {
+        pointDataset.Add(new Point(pointDataset.Data.Last().X +1, rnd.Next(rnd.Next(50))));
+        lineChartJs.Update();
     }
 
 }
