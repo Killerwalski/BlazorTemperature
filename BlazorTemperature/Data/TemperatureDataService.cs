@@ -38,7 +38,7 @@ namespace BlazorTemperature.Data
                 temps = JsonConvert.DeserializeObject<List<TemperatureEntry>>(result);
             }
 
-            temps = temps.Where((x, i) => i % 100 == 0).ToList();
+            temps = temps.Where((x, i) => i % 50 == 0).ToList();
             return temps.ToArray();
         }
     }
