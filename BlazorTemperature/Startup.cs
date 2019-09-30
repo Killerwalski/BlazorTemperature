@@ -29,6 +29,8 @@ namespace BlazorTemperature
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            services.AddHttpClient();
+            services.AddSingleton<TemperatureDataService>(); // Might not need this
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
