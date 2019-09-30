@@ -21,7 +21,7 @@ namespace BlazorTemperature.Data
             _clientFactory = clientFactory;
         }
 
-        public async Task<List<TemperatureEntry>> GetTemperaturesAsync()
+        public async Task<TemperatureEntry[]> GetTemperaturesAsync()
         {
             List<TemperatureEntry> temps = new List<TemperatureEntry>();
             
@@ -38,7 +38,7 @@ namespace BlazorTemperature.Data
                 temps = JsonConvert.DeserializeObject<List<TemperatureEntry>>(result);
             }
 
-            return temps;
+            return temps.ToArray();
         }
     }
 }

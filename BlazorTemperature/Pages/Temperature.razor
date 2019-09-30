@@ -14,14 +14,14 @@
 else
 {
     <p>Temperatures loaded.</p>
-    <p>Samples Collected: @temperatures.Count </p>
+    <p>Samples Collected: @temperatures.Length </p>
     <p>Average Temperature = @string.Format("{0:0.##}", temperatures.Average(p => p.TemperatureF) ) </p>
 }
 
 
 @code {
-    // TemperatureEntry[] temperatures;
-    List<TemperatureEntry> temperatures;
+    TemperatureEntry[] temperatures;
+    //List<TemperatureEntry> temperatures;
 
     protected override async Task OnInitializedAsync()
     {
