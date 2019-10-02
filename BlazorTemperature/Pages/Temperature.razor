@@ -15,7 +15,7 @@
 
 @inject TemperatureDataService TemperatureService
 
-<h3>Temperature</h3>
+<h2>Temperature Data</h2>
 
 @if (temperatures == null)
 {
@@ -24,11 +24,15 @@
 else
 {
     <p>Samples Displayed: @temperatures.Length </p>
-    <p>Average Temperature = @string.Format("{0:0.##}", temperatures.Average(p => p.TemperatureF) ) </p>
+    <p>Start Date: @temperatures.Min(p => p.Timestamp)  </p>
+    <p>End Date: @temperatures.Max(p => p.Timestamp)  </p>
+
+    <p>Minimum Temperature: @string.Format("{0:0.##F°}", temperatures.Min(p => p.TemperatureF) ) </p>
+    <p>Average Temperature = @string.Format("{0:0.##F°}", temperatures.Average(p => p.TemperatureF) ) </p>
+    <p>Maximum Temperature: @string.Format("{0:0.##F°}", temperatures.Max(p => p.TemperatureF) ) </p>
 
     <hr />
 
-    <h2>Line Time Chart</h2>
     <ChartJsLineChart @ref="lineChartJs" Config="@lineConfig" Width="600" Height="300" />
 
 }
@@ -55,7 +59,7 @@ else
                 Title = new OptionsTitle
                 {
                     Display = true,
-                    Text = "Line Chart"
+                    Text = "Temperature Line Chart"
                 },
                 Legend = new Legend
                 {
@@ -83,14 +87,14 @@ else
                             },
                             Time = new TimeOptions
                             {
-                                Unit = TimeMeasurement.Hour,
+                                Unit = TimeMeasurement.Day,
                                 Round = TimeMeasurement.Hour,
                                 TooltipFormat = "YYYY-MM-DD HH:mm",
                                 DisplayFormats = TimeDisplayFormats.DE_CH
                             },
                             ScaleLabel = new ScaleLabel
                             {
-                                LabelString = "Zeit"
+                                LabelString = "Date"
                             }
                         }
                         }
