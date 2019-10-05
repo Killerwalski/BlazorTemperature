@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  temperatureapi:
+    image: ${DOCKER_REGISTRY-}temperatureapi
+    build:
+      context: .
+      dockerfile: TemperatureApi/Dockerfile
+
+  blazortemperature:
+    image: ${DOCKER_REGISTRY-}blazortemperature
+    build:
+      context: .
+      dockerfile: BlazorTemperature/Dockerfile

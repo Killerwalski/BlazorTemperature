@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace TemperatureApi.Models
 {
-    [Table("TemperatureData")]
     public class TemperatureEntry
     {
-        [Key]
-        public int Id { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         public DateTime Timestamp { get; set; }
-        [Column("Temperature(F)")]
+        [BsonElement("Chan 1 - Deg F")]
         public decimal TemperatureF { get; set; }
     }
 }

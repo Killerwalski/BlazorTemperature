@@ -5,7 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using TemperatureApi.Models;
+using TemperatureApi.Services;
 
 namespace TemperatureApi
 {
@@ -21,15 +23,15 @@ namespace TemperatureApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            // Configure ConnectionString
-            var builder = new SqlConnectionStringBuilder(
-                Configuration.GetConnectionString("TemperatureApiContext"));
-            builder.Password = Configuration["Database:KowalskiAzurePass"];
-            var connectionString = builder.ConnectionString;
+            services.Configure<TemperatureDatabaseSettings>(
+                Configuration.GetSection(nameof(TemperatureDatabaseSettings)));
 
-            services.AddDbContext<TemperatureApiContext>(options =>
-                    options.UseSqlServer(connectionString));
+            services.AddSingleton<ITemperatureDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<TemperatureDatabaseSettings>>().Value);
+
+            services.AddSingleton<TemperatureDataService>();
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
