@@ -17,7 +17,6 @@ namespace TemperatureApi.Controllers
         // private readonly TemperatureApiContext _context;
         private readonly TemperatureDataService _dataService;
 
-        // This is just a standard WebApi controller with EF template (Going to comment out all but the Gets
         public TemperatureEntriesController(TemperatureDataService dataService)
         {
             _dataService = dataService;

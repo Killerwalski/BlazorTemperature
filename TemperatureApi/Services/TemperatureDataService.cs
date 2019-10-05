@@ -13,6 +13,8 @@ namespace TemperatureApi.Services
 
         public TemperatureDataService(ITemperatureDatabaseSettings settings)
         {
+
+
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
