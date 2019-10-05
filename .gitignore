@@ -342,7 +342,7 @@ ASALocalRun/
 healthchecksdb
 
 # ignore appsettings configuration files
-*/appsettings.Development.json
-*/appsettings.Staging.json
-*/appsettings.Production.json
+TemperatureApi/appsettings.Development.json
+TemperatureApi/appsettings.Staging.json
+TemperatureApi/appsettings.Production.json
 
