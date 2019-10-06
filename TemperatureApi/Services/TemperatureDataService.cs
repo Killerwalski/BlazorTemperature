@@ -24,6 +24,10 @@ namespace TemperatureApi.Services
         public List<TemperatureEntry> Get() =>
             _temperatures.Find(pass => true).ToList();
 
+        public async Task<IEnumerable<TemperatureEntry>> GetAsync()
+        {
+            return await _temperatures.Find(pass => true).ToListAsync();
+        }
 
     }
 }

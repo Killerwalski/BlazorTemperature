@@ -26,11 +26,13 @@ namespace BlazorTemperature.Data
             List<TemperatureEntry> temps = new List<TemperatureEntry>();
             
             var request = new HttpRequestMessage(HttpMethod.Get,
-            "https://temperatureapi/api/temperatureEntries");
-                // "https://localhost:44370/api/temperatureEntries");
+            //"https://temperatureapi/api/temperatureEntries");
+            "https://localhost:44370/api/temperatureEntries");
+
             // request.Headers.Add("Accept", "application/vnd.github.v3+json");
 
             var client = _clientFactory.CreateClient();
+            // var response = client.SendAsync(request).Result;
 
             var response = await client.SendAsync(request);
             if (response.IsSuccessStatusCode)

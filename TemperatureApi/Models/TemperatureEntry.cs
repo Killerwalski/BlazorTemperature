@@ -15,6 +15,7 @@ namespace TemperatureApi.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
+        [BsonElement("Time")]
         public DateTime Timestamp { get; set; }
         [BsonElement("Chan 1 - Deg F")]
         public decimal TemperatureF { get; set; }

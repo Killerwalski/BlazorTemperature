@@ -23,10 +23,18 @@ namespace TemperatureApi.Controllers
         }
 
         // GET: api/TemperatureEntries
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<TemperatureEntry>>> GetTemperatureEntry()
+        //{
+        //    //var result = _dataService.Get();
+        //    return _dataService.Get();
+        //}
+
+
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TemperatureEntry>>> GetTemperatureEntry()
+        public async Task<ActionResult<IEnumerable<TemperatureEntry>>> GetTemperatureEntry() // Test this
         {
-            return  _dataService.Get();
+            return Ok(await _dataService.GetAsync().ConfigureAwait(false));
         }
     }
 }
