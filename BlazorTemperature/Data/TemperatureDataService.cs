@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,15 +25,16 @@ namespace BlazorTemperature.Data
         public async Task<TemperatureEntry[]> GetTemperaturesAsync()
         {
             List<TemperatureEntry> temps = new List<TemperatureEntry>();
-            
+            var ip = IPAddress.Loopback;
+
             var request = new HttpRequestMessage(HttpMethod.Get,
             //"https://temperatureapi/api/temperatureEntries");
             "https://localhost:44370/api/temperatureEntries");
+            //$"https://{ip}:44370/api/temperatureEntries");
 
             // request.Headers.Add("Accept", "application/vnd.github.v3+json");
 
             var client = _clientFactory.CreateClient();
-            // var response = client.SendAsync(request).Result;
 
             var response = await client.SendAsync(request);
             if (response.IsSuccessStatusCode)

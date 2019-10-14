@@ -6,7 +6,6 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
 WORKDIR /src
 COPY ["BlazorTemperature/BlazorTemperature.csproj", "BlazorTemperature/"]
-COPY ["TemperatureApi/TemperatureApi.csproj", "TemperatureApi/"]
 RUN dotnet restore "BlazorTemperature/BlazorTemperature.csproj"
 COPY . .
 WORKDIR "/src/BlazorTemperature"

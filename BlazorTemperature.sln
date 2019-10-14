@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorTemperature", "Blazor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemperatureApi", "TemperatureApi\TemperatureApi.csproj", "{CA58F44C-8D9B-480B-B3D6-C69A251F6C10}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{127B44EF-DBE8-4090-A6E2-2FBEFBC574D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CA58F44C-8D9B-480B-B3D6-C69A251F6C10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA58F44C-8D9B-480B-B3D6-C69A251F6C10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA58F44C-8D9B-480B-B3D6-C69A251F6C10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{127B44EF-DBE8-4090-A6E2-2FBEFBC574D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{127B44EF-DBE8-4090-A6E2-2FBEFBC574D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{127B44EF-DBE8-4090-A6E2-2FBEFBC574D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{127B44EF-DBE8-4090-A6E2-2FBEFBC574D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
