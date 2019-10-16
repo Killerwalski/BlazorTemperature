@@ -28,9 +28,10 @@ namespace BlazorTemperature.Data
             var ip = IPAddress.Loopback;
 
             var request = new HttpRequestMessage(HttpMethod.Get,
-            //"https://temperatureapi/api/temperatureEntries");
-            "https://localhost:44370/api/temperatureEntries");
+            "https://temperatureapi/api/temperatureEntries");
+            // "https://localhost:44380/api/temperatureEntries");
             //$"https://{ip}:44370/api/temperatureEntries");
+            // "https://host.docker.internal:44380/api/temperatureEntries");
 
             // request.Headers.Add("Accept", "application/vnd.github.v3+json");
 
