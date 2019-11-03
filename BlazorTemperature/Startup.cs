@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorTemperature.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace BlazorTemperature
 {
@@ -30,6 +31,12 @@ namespace BlazorTemperature
             services.AddServerSideBlazor().AddCircuitOptions(options => options.DetailedErrors = true);
             services.AddHttpClient();
             services.AddSingleton<TemperatureDataService>();
+
+            services.AddHttpsRedirection(options =>
+            {
+                options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+                options.HttpsPort = 5111;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
