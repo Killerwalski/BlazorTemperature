@@ -28,8 +28,8 @@ namespace BlazorTemperature.Data
             var ip = IPAddress.Loopback;
 
             var request = new HttpRequestMessage(HttpMethod.Get,
-            "https://temperatureapi/api/temperatureEntries");
-            // "https://localhost:44380/api/temperatureEntries");
+            // "https://temperatureapi/api/temperatureEntries");
+            "http://localhost:5500/api/temperatureEntries");
             //$"https://{ip}:44370/api/temperatureEntries");
             // "https://host.docker.internal:44380/api/temperatureEntries");
 
