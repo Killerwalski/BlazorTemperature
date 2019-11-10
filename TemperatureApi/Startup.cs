@@ -43,7 +43,7 @@ namespace TemperatureApi
             }
 
             app.UseHttpsRedirection();
-
+            
             app.UseRouting();
 
             app.UseAuthorization();
