@@ -47,6 +47,7 @@ namespace TemperatureApi
                     //    serverOptions.Limits.RequestHeadersTimeout =
                     //        TimeSpan.FromMinutes(1);
                     //});
+                    webBuilder.UseUrls("http://localhost:5500");
                     webBuilder.UseStartup<Startup>();
                 });
     }
