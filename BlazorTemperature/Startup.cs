@@ -35,7 +35,7 @@ namespace BlazorTemperature
             services.AddHttpsRedirection(options =>
             {
                 options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
-                options.HttpsPort = 5111;
+                options.HttpsPort = 5001;
             });
         }
 
