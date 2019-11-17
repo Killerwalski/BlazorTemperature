@@ -22,6 +22,7 @@ namespace BlazorTemperature
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseUrls("https://localhost:5001;http://localhost:5000");
                     webBuilder.UseStartup<Startup>();
                 });
     }
